@@ -1,0 +1,7 @@
+tr-cities.json — Türkiye il sınırları (81 il, GeoJSON)
+
+Kaynak : https://github.com/alpers/Turkey-Maps-GeoJSON
+Lisans : Apache License 2.0
+Değişiklik: Dosya boyutu için yalnızca "minify" edildi (JSON içeriği aynı).
+
+Apache-2.0 lisans metni: https://www.apache.org/licenses/LICENSE-2.0

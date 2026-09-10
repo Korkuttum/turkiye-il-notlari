@@ -1,0 +1,16 @@
+services:
+  turkiye-il-notlari:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: turkiye-il-notlari
+    ports:
+      - "5000:5000"
+    volumes:
+      - il-notlari-data:/data
+    environment:
+      - TZ=Europe/Istanbul
+    restart: unless-stopped
+
+volumes:
+  il-notlari-data:
