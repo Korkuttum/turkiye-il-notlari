@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.0.1
+
+- Kaydı olmayan iller daha koyu gri: eski ton deniz rengine çok yakındı, harita seçilmiyordu
+
 ## 1.0.0
 
 - İlk sürüm: Türkiye il haritası üzerinden kitap notu tutma

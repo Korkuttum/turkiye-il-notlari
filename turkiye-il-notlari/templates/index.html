@@ -23,7 +23,7 @@
 <style>
   :root{
     --bg:#eef1f5; --kart:#fff; --cizgi:#dde2e9; --metin:#16202c; --soluk:#67717f;
-    --vurgu:#2563eb; --tehlike:#dc2626; --deniz:#dbe6f2; --bos:#dfe4ea;
+    --vurgu:#2563eb; --tehlike:#dc2626; --deniz:#dde8f4; --bos:#b7c2d0;
     --st:env(safe-area-inset-top,0px);  --sb:env(safe-area-inset-bottom,0px);
     --sl:env(safe-area-inset-left,0px); --sr:env(safe-area-inset-right,0px);
   }
@@ -262,7 +262,7 @@
   }
 
   // ---------- renkler ----------
-  var BOS = "#dfe4ea";
+  var BOS = "#b7c2d0";   // kaydı olmayan il — denizden belirgin ayrışsın
   function ilRengi(plaka) {
     var h = (plaka * 137.508) % 360, s = 55 + (plaka * 7) % 18, l = 58 + (plaka * 11) % 14;
     return "hsl(" + h.toFixed(1) + "," + s + "%," + l + "%)";
