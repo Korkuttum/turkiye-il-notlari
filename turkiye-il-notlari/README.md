@@ -9,7 +9,9 @@ pencere açılır; **kitap adını** (zorunlu) ve isterseniz bir **not** girip *
 
 - Kaydı olmayan iller **gri** kalır, ilk kitap girildiğinde il kendi rengine boyanır
 - İlin üstündeki rozet o ildeki kitap sayısını gösterir
-- Sağ alttaki palet düğmesi renklendirmeyi **kitap yoğunluğu** ısı haritasına çevirir
+- Sağ alttaki **liste düğmesi** tüm kitapları tek tek satır halinde gösterir; arayabilir,
+  A → Z veya tarihe göre sıralayabilir, bir satıra dokunup o ile gidebilirsiniz
+- Palet düğmesi renklendirmeyi **kitap yoğunluğu** ısı haritasına çevirir
 - Çift parmakla yakınlaştırıp tek parmakla kaydırabilirsiniz
 
 ## Erişim

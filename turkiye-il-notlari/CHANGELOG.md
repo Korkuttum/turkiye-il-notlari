@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 1.0.4
+
+- **Tüm Kitaplar listesi** eklendi. Sağ alttaki liste düğmesiyle açılır; her kayıt tek
+  satırda görünür (il rengi, kitap adı, il, tarih, sil).
+- Kitap veya il adına göre arama
+- İki sıralama: **A → Z** (varsayılan, Türkçe harf sırasına göre) ve **Yeniden eskiye**
+- Bir satıra dokununca liste kapanır, harita o ile yakınlaşır ve ilin penceresi açılır
+
 ## 1.0.3
 
 - Derleme hatası giderildi (`pip: not found`). `build.yaml` içindeki `python:3.11-slim`

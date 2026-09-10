@@ -33,6 +33,7 @@ erişilebilir olur.
 - **iPad öncelikli arayüz** — ile dokununca ortada açılır pencere, büyük dokunma hedefleri,
   çift parmak pinch-zoom, tek parmak kaydırma, çentik/safe-area uyumu
 - **İl başına birden fazla kitap** — tarihli, tek tek silinebilir, kitap adları otomatik tamamlanır
+- **Tüm kitaplar listesi** — her kayıt tek satırda, aranabilir, A → Z veya tarihe göre sıralanır
 - **İki renk modu** — her il farklı renk / kitap yoğunluğu ısı haritası
 - **Bağımlılık yok** — harita GeoJSON'dan tarayıcıda çizilir, internet olmadan da çalışır
 

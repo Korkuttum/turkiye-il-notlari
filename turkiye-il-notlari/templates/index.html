@@ -102,13 +102,13 @@
   }
 
   /* ---------- açılır pencere ---------- */
-  #modal{position:fixed;inset:0;z-index:60;display:none}
-  #modal.acik{display:block}
-  #ortu{position:absolute;inset:0;background:rgba(15,23,42,.42);backdrop-filter:blur(4px);
+  #modal,#liste-modal{position:fixed;inset:0;z-index:60;display:none}
+  #modal.acik,#liste-modal.acik{display:block}
+  #ortu,#l-ortu{position:absolute;inset:0;background:rgba(15,23,42,.42);backdrop-filter:blur(4px);
         opacity:0;transition:opacity .22s}
-  #modal.acik #ortu{opacity:1}
+  #modal.acik #ortu,#liste-modal.acik #l-ortu{opacity:1}
 
-  #pencere{
+  #pencere,#l-pencere{
     position:absolute;left:50%;top:50%;
     transform:translate(-50%,-46%) scale(.96);opacity:0;
     transition:transform .24s cubic-bezier(.2,.8,.3,1),opacity .2s;
@@ -118,7 +118,7 @@
     background:var(--kart);border-radius:22px;overflow:hidden;
     box-shadow:0 28px 70px rgba(15,23,42,.3);
   }
-  #modal.acik #pencere{transform:translate(-50%,-50%) scale(1);opacity:1}
+  #modal.acik #pencere,#liste-modal.acik #l-pencere{transform:translate(-50%,-50%) scale(1);opacity:1}
 
   .p-ust{display:flex;align-items:flex-start;gap:12px;padding:20px 22px 16px;border-bottom:1px solid var(--cizgi)}
   .p-ust h2{margin:0;font-size:26px;font-weight:680;letter-spacing:-.01em}
@@ -164,13 +164,58 @@
   .kayit .sil:active{background:#fef2f2}
   .p-bos{color:var(--soluk);font-size:15.5px;padding:20px 0;text-align:center}
 
+  /* ---------- tüm kitaplar listesi ---------- */
+  .l-arac{padding:14px 22px 15px;border-bottom:1px solid var(--cizgi)}
+  .l-arac input{
+    width:100%;border:1px solid var(--cizgi);border-radius:13px;padding:12px 15px;
+    font:inherit;font-size:17px;background:#fff;color:var(--metin);
+    -webkit-user-select:text;user-select:text;-webkit-appearance:none;appearance:none;
+  }
+  .l-arac input:focus{outline:2px solid var(--vurgu);outline-offset:-1px}
+  .l-siralar{display:flex;gap:8px;margin-top:11px}
+  .l-siralar button{
+    flex:1;border:1px solid var(--cizgi);background:#fff;color:var(--soluk);
+    border-radius:11px;padding:10px;font:inherit;font-size:14.5px;font-weight:600;
+    cursor:pointer;min-height:44px;white-space:nowrap;
+  }
+  .l-siralar button.on{background:var(--vurgu);color:#fff;border-color:var(--vurgu)}
+
+  /* her kayıt tek satır */
+  .l-satir{
+    display:flex;align-items:center;gap:10px;min-height:48px;
+    border-bottom:1px solid var(--cizgi);cursor:pointer;
+  }
+  .l-satir:last-child{border-bottom:0}
+  .l-satir:active{background:#f4f7fa}
+  .l-satir .nokta{width:11px;height:11px;border-radius:3px;flex:none}
+  .l-satir .ad{
+    flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    font-size:16px;font-weight:600;
+  }
+  .l-satir .ad .not{font-weight:400;color:var(--soluk);font-size:14.5px}
+  .l-satir .il{
+    flex:none;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    font-size:14px;color:var(--soluk);
+  }
+  .l-satir .tar{flex:none;font-size:13px;color:var(--soluk);font-variant-numeric:tabular-nums}
+  .l-satir .sil{
+    flex:none;border:1px solid var(--cizgi);background:#fff;color:var(--tehlike);
+    border-radius:9px;padding:6px 12px;font:inherit;font-size:13.5px;cursor:pointer;
+  }
+  .l-satir .sil:active{background:#fef2f2}
+  #l-pencere{width:min(720px,calc(100vw - 36px))}
+  @media (max-width:620px){
+    .l-satir .tar{display:none}
+    .l-satir .il{max-width:88px}
+  }
+
   @media (max-width:600px){
-    #pencere{
+    #pencere,#l-pencere{
       width:100%;max-width:100%;left:0;top:auto;bottom:0;
       transform:translateY(100%);border-radius:24px 24px 0 0;
       max-height:88dvh;padding-bottom:var(--sb);
     }
-    #modal.acik #pencere{transform:none}
+    #modal.acik #pencere,#liste-modal.acik #l-pencere{transform:none}
     .p-ust h2{font-size:23px}
     #baslik b{font-size:15px}
   }
@@ -190,6 +235,9 @@
   </div>
 
   <div id="araclar">
+    <button type="button" id="d-liste" aria-label="Tüm kitaplar" title="Tüm kitaplar">
+      <svg viewBox="0 0 24 24"><path d="M4 6h2.2v2.2H4V6zm0 4.9h2.2v2.2H4v-2.2zM4 15.8h2.2V18H4v-2.2zM8.4 6H20v2.2H8.4V6zm0 4.9H20v2.2H8.4v-2.2zm0 4.9H20V18H8.4v-2.2z"/></svg>
+    </button>
     <button type="button" id="d-mod" aria-label="Renklendirmeyi değiştir" title="Renklendirme">
       <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 000 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1a1.49 1.49 0 01-.36-.97c0-.83.67-1.5 1.5-1.5H16a5 5 0 005-5c0-4.42-4.03-8-9-8zm-5.5 9a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm3-4a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm3.5 4a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
     </button>
@@ -231,6 +279,29 @@
     </div>
 
     <div class="p-liste" id="p-liste"></div>
+  </div>
+</div>
+
+<div id="liste-modal" role="dialog" aria-modal="true" aria-labelledby="l-baslik">
+  <div id="l-ortu"></div>
+  <div id="l-pencere">
+    <div class="p-ust">
+      <div style="flex:1;min-width:0">
+        <h2 id="l-baslik">Tüm Kitaplar</h2>
+        <span class="p-plaka" id="l-sayi">—</span>
+      </div>
+      <button class="p-kapat" id="l-kapat" type="button" aria-label="Kapat">×</button>
+    </div>
+
+    <div class="l-arac">
+      <input type="search" id="l-ara" placeholder="Kitap veya il ara…" autocomplete="off" enterkeyhint="search">
+      <div class="l-siralar">
+        <button type="button" id="l-s-ad" class="on">A → Z</button>
+        <button type="button" id="l-s-tarih">Yeniden eskiye</button>
+      </div>
+    </div>
+
+    <div class="p-liste" id="l-icerik"></div>
   </div>
 </div>
 
@@ -565,7 +636,9 @@
   document.getElementById("p-kapat").addEventListener("click", modalKapat);
   document.getElementById("ortu").addEventListener("click", modalKapat);
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && modal.classList.contains("acik")) modalKapat();
+    if (e.key !== "Escape") return;
+    if (listeModal.classList.contains("acik")) listeKapat();
+    else if (modal.classList.contains("acik")) modalKapat();
   });
 
   function kayitlariYukle(ad) {
@@ -692,6 +765,159 @@
   document.getElementById("p-not").addEventListener("keydown", function (e) {
     if ((e.ctrlKey || e.metaKey) && e.key === "Enter") ekle();
   });
+
+  // ---------- tüm kitaplar listesi ----------
+  var listeModal = document.getElementById("liste-modal");
+  var tumKayitlar = [];
+  var listeSira = "ad";          // "ad" (A→Z) | "tarih"
+
+  function listeAc() {
+    listeModal.classList.add("acik");
+    ipucu.classList.add("gizli");
+    var icerik = document.getElementById("l-icerik");
+    icerik.textContent = "";
+    var bekle = document.createElement("p");
+    bekle.className = "p-bos";
+    bekle.textContent = "Yükleniyor…";
+    icerik.appendChild(bekle);
+
+    fetch("api/export")
+      .then(function (r) { return r.json(); })
+      .then(function (d) { tumKayitlar = d; listeCiz(); })
+      .catch(function () {
+        icerik.textContent = "";
+        var h = document.createElement("p");
+        h.className = "p-bos";
+        h.textContent = "Liste alınamadı.";
+        icerik.appendChild(h);
+      });
+  }
+
+  function listeKapat() { listeModal.classList.remove("acik"); }
+
+  document.getElementById("d-liste").addEventListener("click", listeAc);
+  document.getElementById("l-kapat").addEventListener("click", listeKapat);
+  document.getElementById("l-ortu").addEventListener("click", listeKapat);
+
+  document.getElementById("l-ara").addEventListener("input", listeCiz);
+
+  ["ad", "tarih"].forEach(function (tur) {
+    document.getElementById("l-s-" + tur).addEventListener("click", function () {
+      listeSira = tur;
+      ["ad", "tarih"].forEach(function (t) {
+        document.getElementById("l-s-" + t).classList.toggle("on", t === tur);
+      });
+      listeCiz();
+    });
+  });
+
+  function kisaTarih(ts) {
+    // "2026-09-10 19:40:37" -> "10.09.2026"
+    var g = (ts || "").split(" ")[0].split("-");
+    return g.length === 3 ? g[2] + "." + g[1] + "." + g[0] : (ts || "");
+  }
+
+  function satirYap(n) {
+    var satir = document.createElement("div");
+    satir.className = "l-satir";
+
+    var kayit = iller.filter(function (i) { return i.ad === n.province; })[0];
+
+    var nokta = document.createElement("span");
+    nokta.className = "nokta";
+    nokta.style.background = kayit ? ilRengi(kayit.plaka) : BOS;
+    satir.appendChild(nokta);
+
+    var ad = document.createElement("span");
+    ad.className = "ad";
+    ad.textContent = n.book || "(kitap adı yok)";
+    if (n.text) {
+      var not = document.createElement("span");
+      not.className = "not";
+      not.textContent = " · " + n.text;
+      ad.appendChild(not);
+    }
+    ad.title = (n.book || "") + (n.text ? " — " + n.text : "");
+    satir.appendChild(ad);
+
+    var il = document.createElement("span");
+    il.className = "il";
+    il.textContent = n.province;
+    satir.appendChild(il);
+
+    var tar = document.createElement("span");
+    tar.className = "tar";
+    tar.textContent = kisaTarih(n.timestamp);
+    satir.appendChild(tar);
+
+    var sil = document.createElement("button");
+    sil.className = "sil";
+    sil.type = "button";
+    sil.textContent = "Sil";
+    sil.addEventListener("click", function (e) {
+      e.stopPropagation();                       // satırın kendi tıklamasını tetiklemesin
+      if (!confirm("“" + (n.book || "Bu kayıt") + "” silinsin mi?")) return;
+      fetch("api/notes/" + n.id, { method: "DELETE" })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          tumKayitlar = tumKayitlar.filter(function (k) { return k.id !== n.id; });
+          sayilar[n.province] = Math.max(0, (sayilar[n.province] || 1) - 1);
+          if (!sayilar[n.province]) delete sayilar[n.province];
+          boya();
+          listeCiz();
+        });
+    });
+    satir.appendChild(sil);
+
+    // satıra dokununca haritada o ile git ve penceresini aç
+    satir.addEventListener("click", function () {
+      if (!kayit) return;
+      listeKapat();
+      var w = temel.w * 0.3, h = w * temel.h / temel.w;
+      kullaniciOynatti = true;
+      git({ x: kayit.cx - w / 2, y: kayit.cy - h / 2, w: w, h: h });
+      ilSec(kayit.ad, kayit.plaka);
+    });
+
+    return satir;
+  }
+
+  function listeCiz() {
+    var icerik = document.getElementById("l-icerik");
+    var q = document.getElementById("l-ara").value.trim().toLocaleLowerCase("tr");
+    icerik.textContent = "";
+
+    var veri = tumKayitlar.filter(function (n) {
+      if (!q) return true;
+      return (n.book || "").toLocaleLowerCase("tr").indexOf(q) !== -1 ||
+             (n.province || "").toLocaleLowerCase("tr").indexOf(q) !== -1 ||
+             (n.text || "").toLocaleLowerCase("tr").indexOf(q) !== -1;
+    });
+
+    document.getElementById("l-sayi").textContent =
+      veri.length + " kitap" + (q && veri.length !== tumKayitlar.length
+        ? " (toplam " + tumKayitlar.length + ")" : "");
+
+    if (!veri.length) {
+      var bos = document.createElement("p");
+      bos.className = "p-bos";
+      bos.textContent = tumKayitlar.length
+        ? "Aramanıza uyan kayıt yok."
+        : "Henüz kitap eklenmemiş. Haritada bir ile dokunun.";
+      icerik.appendChild(bos);
+      return;
+    }
+
+    function kitapAdi(n) { return (n.book || "").toLocaleUpperCase("tr"); }
+
+    veri.slice().sort(function (a, b) {
+      if (listeSira === "ad") {
+        return kitapAdi(a).localeCompare(kitapAdi(b), "tr") ||
+               a.province.localeCompare(b.province, "tr");
+      }
+      return b.timestamp.localeCompare(a.timestamp) || b.id - a.id;
+    }).forEach(function (n) { icerik.appendChild(satirYap(n)); });
+  }
 
   // ---------- efsane çubuğu ----------
   (function () {
