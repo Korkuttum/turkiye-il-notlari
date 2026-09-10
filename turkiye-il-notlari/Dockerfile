@@ -1,5 +1,8 @@
-ARG BUILD_FROM=python:3.11-slim
-FROM ${BUILD_FROM}
+# Temel imaj doğrudan burada tanımlı.
+# ARG BUILD_FROM KULLANMAYIN: Supervisor her derlemede kendi varsayılanını
+# (ghcr.io/home-assistant/base = Alpine, pip yok) --build-arg ile gönderiyor ve
+# ARG varsa onu ezip derlemeyi bozuyor.
+FROM python:3.11-slim
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \

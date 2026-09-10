@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 1.0.3
+
+- Derleme hatası giderildi (`pip: not found`). `build.yaml` içindeki `python:3.11-slim`
+  Supervisor'ın beklediği `ad/imaj` kalıbına uymadığı için reddediliyor, HA kendi Alpine
+  tabanlı varsayılan imajına düşüyordu. Kullanımdan kalkmış `build.yaml` kaldırıldı,
+  temel imaj doğrudan Dockerfile'a yazıldı.
+
 ## 1.0.2
 
 - Eklenti mağazada görünmüyordu: `image: null` alanı kaldırıldı. Yerelde derlenen
