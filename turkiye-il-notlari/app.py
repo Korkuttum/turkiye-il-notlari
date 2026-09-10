@@ -65,9 +65,44 @@ def row_to_note(row):
     }
 
 
+def ingress_taban():
+    """Home Assistant ingress altında sunuluyorsak taban yolu döner, aksi halde "".
+
+    HA, isteği eklentiye iletirken X-Ingress-Path başlığını ekler; sayfadaki tüm
+    bağlantılar buna göre göreli çözülmeli, yoksa ingress altında kırılırlar.
+    """
+    return request.headers.get("X-Ingress-Path", "").rstrip("/")
+
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", taban=ingress_taban())
+
+
+@app.route("/manifest.webmanifest")
+def manifest():
+    taban = ingress_taban()
+    return jsonify(
+        {
+            "name": "Türkiye İl Notları",
+            "short_name": "İl Notları",
+            "description": "Türkiye il haritası üzerinden kitap notu tutma",
+            "lang": "tr",
+            "dir": "ltr",
+            "start_url": taban + "/",
+            "scope": taban + "/",
+            "display": "standalone",
+            "orientation": "any",
+            "background_color": "#eef1f5",
+            "theme_color": "#2563eb",
+            "icons": [
+                {"src": taban + "/static/icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+                {"src": taban + "/static/icons/icon-512.png", "sizes": "512x512", "type": "image/png"},
+                {"src": taban + "/static/icons/icon-512-maskable.png", "sizes": "512x512",
+                 "type": "image/png", "purpose": "maskable"},
+            ],
+        }
+    )
 
 
 @app.route("/api/summary")

@@ -1,7 +1,10 @@
+# Home Assistant kullanmadan, düz Docker ile çalıştırmak isteyenler için.
+# HA üzerinde çalıştırıyorsanız bunu kullanmayın: depoyu eklenti olarak ekleyin
+# (bkz. README) — aksi halde Home Assistant kurulumunuz "Unsupported" işaretlenir.
 services:
   turkiye-il-notlari:
     build:
-      context: .
+      context: ./turkiye-il-notlari
       dockerfile: Dockerfile
     container_name: turkiye-il-notlari
     ports:

@@ -3,7 +3,7 @@ const CACHE = "il-notlari-v1";
 const KABUK = [
   "/",
   "/static/tr-cities.json",
-  "/static/manifest.webmanifest",
+  "/manifest.webmanifest",
   "/static/icons/icon-192.png",
   "/static/icons/icon-512.png",
   "/static/icons/apple-touch-icon.png"

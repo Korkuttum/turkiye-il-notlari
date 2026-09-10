@@ -2,7 +2,11 @@
 import colorsys, json, math, os
 from PIL import Image, ImageDraw
 
-geo = json.load(open('static/tr-cities.json', encoding='utf-8'))
+# Betik nereden çalıştırılırsa çalıştırılsın eklenti klasörünü bul
+KOK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "turkiye-il-notlari")
+STATIK = os.path.normpath(os.path.join(KOK, "static"))
+
+geo = json.load(open(os.path.join(STATIK, "tr-cities.json"), encoding="utf-8"))
 
 def proj(lon, lat):
     return (lon * math.pi / 180, math.log(math.tan(math.pi / 4 + lat * math.pi / 360)))
@@ -78,8 +82,8 @@ def render(size, out, content=0.86, ss=4):
     img.save(out)
     print(out, img.size)
 
-os.makedirs('static/icons', exist_ok=True)
-render(180, 'static/icons/apple-touch-icon.png')
-render(192, 'static/icons/icon-192.png')
-render(512, 'static/icons/icon-512.png')
-render(512, 'static/icons/icon-512-maskable.png', content=0.64)
+os.makedirs(os.path.join(STATIK, "icons"), exist_ok=True)
+render(180, os.path.join(STATIK, 'icons', 'apple-touch-icon.png'))
+render(192, os.path.join(STATIK, 'icons', 'icon-192.png'))
+render(512, os.path.join(STATIK, 'icons', 'icon-512.png'))
+render(512, os.path.join(STATIK, 'icons', 'icon-512-maskable.png'), content=0.64)

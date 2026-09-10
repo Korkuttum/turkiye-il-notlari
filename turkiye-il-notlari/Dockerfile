@@ -1,4 +1,5 @@
-FROM python:3.11-slim
+ARG BUILD_FROM=python:3.11-slim
+FROM ${BUILD_FROM}
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -13,7 +14,8 @@ COPY app.py .
 COPY templates/ ./templates/
 COPY static/ ./static/
 
-# SQLite veritabanı burada kalıcı tutulur
+# Home Assistant eklentilerinde /data zaten kalıcıdır; docker compose ile
+# çalıştırıldığında da veritabanı burada tutulur.
 VOLUME ["/data"]
 
 EXPOSE 5000

@@ -1,0 +1,8 @@
+# Değişiklikler
+
+## 1.0.0
+
+- İlk sürüm: Türkiye il haritası üzerinden kitap notu tutma
+- Home Assistant eklentisi olarak paketlendi (Supervisor yönetir, ingress destekler)
+- Sol menüden ingress ile, istenirse 5000 portundan doğrudan erişim
+- Veriler `/data/notlar.db` içinde kalıcı

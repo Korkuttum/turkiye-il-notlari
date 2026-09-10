@@ -1,0 +1,24 @@
+name: Türkiye İl Notları
+version: "1.0.0"
+slug: turkiye_il_notlari
+description: Türkiye il haritası üzerinden kitap notu tutma
+url: https://github.com/Korkuttum/turkiye-il-notlari
+arch:
+  - aarch64
+  - amd64
+  - armv7
+  - armhf
+  - i386
+init: false
+startup: application
+boot: auto
+ingress: true
+ingress_port: 5000
+panel_icon: mdi:book-open-page-variant
+panel_title: İl Notları
+panel_admin: false
+ports:
+  5000/tcp: 5000
+ports_description:
+  5000/tcp: Web arayüzü (doğrudan erişim; boş bırakırsanız sadece sol menüden açılır)
+image: null
