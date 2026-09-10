@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.0.2
+
+- Eklenti mağazada görünmüyordu: `image: null` alanı kaldırıldı. Yerelde derlenen
+  eklentilerde bu alan hiç bulunmamalı, `null` değeri şema doğrulamasını düşürüyordu.
+
 ## 1.0.1
 
 - Kaydı olmayan iller daha koyu gri: eski ton deniz rengine çok yakındı, harita seçilmiyordu
